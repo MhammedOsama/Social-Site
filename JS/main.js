@@ -190,6 +190,9 @@ function getPosts(reload = true, page = 1) {
     })
 }
 
+
+
+
 function loginBtnClicked() {
   const username = document.getElementById("username-input").value
   const password = document.getElementById("password-input").value
@@ -201,14 +204,15 @@ function loginBtnClicked() {
   toggleLoader(true)
   axios.post(url, params)
     .then((response) => {
+      // console.log(response.data)
       localStorage.setItem("token", response.data.token)
       localStorage.setItem("user", JSON.stringify(response.data.user))
-
       const modal = document.getElementById("login-modal")
       const modalInstance = bootstrap.Modal.getInstance(modal)
       modalInstance.hide()
       showAlert('Logged in Successfully')
       setupUi()
+      updateGreetingMessage(response.data.user.name)
     })
     .catch((error) => {
       const message = error.response.data.message
@@ -217,47 +221,21 @@ function loginBtnClicked() {
       toggleLoader(false)
     });
 }
+// updateGreetingMessage("me5a")
 
-function registerBtnClicked() {
-  const name = document.getElementById("register-name-input").value
-  const username = document.getElementById("register-username-input").value
-  const password = document.getElementById("register-password-input").value
-  const email = document.getElementById("register-email-input").value
-  const image = document.getElementById("register-image-input").files[0]
-  console.log(image)
-
-
-  const formData = new FormData()
-  formData.append("name", name)
-  formData.append("username", username)
-  formData.append("password", password)
-  formData.append("email", email)
-  formData.append("image", image)
-
-  const header = {
-    "Content-Type": "multipart/form-data",
+function updateGreetingMessage(username) {
+  const helloDiv = document.getElementById("Hello-div")
+  if (helloDiv) {
+    helloDiv.innerHTML = `Hello, ${username} 👋`
   }
-  const url = `${baseUrl}/register`
-  toggleLoader(true)
-  axios.post(url, formData, { headers: header })
-    .then((response) => {
-      console.log(response)
-      localStorage.setItem("token", response.data.token)
-      localStorage.setItem("user", JSON.stringify(response.data.user))
-
-      const modal = document.getElementById("register-modal")
-      const modalInstance = bootstrap.Modal.getInstance(modal)
-      modalInstance.hide()
-      showAlert('New User Registered Successfully')
-      setupUi()
-    })
-    .catch((error) => {
-      const message = error.response.data.message
-      showAlert(message, 'danger')
-    }).finally(() => {
-      toggleLoader(false)
-    });
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const user = JSON.parse(localStorage.getItem("user"))
+  if (user) {
+    updateGreetingMessage(user.name)
+  }
+})
 
 
 function logout() {
@@ -375,9 +353,11 @@ function addButtonClicked() {
 
 function profileClicked() {
   const user = showInfo()
+  console.log(user)
   const userId = user.id
   window.location = `profile.html?userId=${userId}`
 }
+
 
 
 function setupUi() {
@@ -449,10 +429,6 @@ function toggleLoader(show = true) {
     document.getElementById("loader").style.visibility = "hidden"
   }
 }
-
-
-
-
 
 
 

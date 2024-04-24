@@ -8,6 +8,25 @@ function getCurrentUserId() {
   return id
 }
 
+// function getUser() {
+//   const id = getCurrentUserId()
+//   axios.get(`${baseUrl}/users/${id}`)
+//     .then((response) => {
+//       const user = response.data.data
+//       // Username 
+//       document.getElementById("username-info").innerHTML = `${user.username}'s Posts`
+//       // Image
+//       document.getElementById("header-iamge").src = user.profile_image
+//       document.getElementById("main-info-email").innerHTML = user.email
+//       document.getElementById("main-info-name").innerHTML = user.name
+//       document.getElementById("main-info-username").innerHTML = user.username
+//       // Post & Comment Count
+//       document.getElementById("post-count").innerHTML = user.posts_count
+//       document.getElementById("comment-count").innerHTML = user.comments_count
+
+//     })
+// }
+
 function getUser() {
   const id = getCurrentUserId()
   axios.get(`${baseUrl}/users/${id}`)
@@ -154,4 +173,10 @@ function getPosts() {
     .catch((error) => {
       console.log(error);
     })
+}
+
+
+function profileHome(user) {
+  user = showInfo()
+  console.log(user)
 }

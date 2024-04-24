@@ -13,6 +13,49 @@
     <script src="./node_modules/axios/dist/axios.min.js"></script>
   </head>
   <body>
+    <!-- participants -->
+    <div
+      class="offcanvas offcanvas-end"
+      style="width: 300px; background-color: #ffffff"
+      tabindex="-1"
+      id="offcanvasRight"
+      aria-labelledby="offcanvasRightLabel">
+      <div class="offcanvas-header">
+        <h5
+          class="offcanvas-title"
+          style="font-weight: 700; letter-spacing: 1px"
+          id="offcanvasRightLabel">
+          participants
+        </h5>
+      </div>
+      <div id="offcanvasBody" class="offcanvas-body">
+        <input type="text" class="search-input" placeholder="Search..." />
+        <hr />
+        <div id="cards">
+          <div
+            class="profileCard"
+            style="cursor: pointer; margin-bottom: 15px"
+            onclick="profileClicked()">
+            <img
+              style="
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                margin-right: 5px;
+              "
+              src="profile pics/team-03.png"
+              alt="" />
+            <span
+              style="font-weight: 700; font-size: 17px"
+              id="username-profile-card"
+              >Mohamed22</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- participants -->
+
     <!-- Loader  -->
     <div
       id="loader"
@@ -29,9 +72,15 @@
       id="scrollBtn"
       class="Btn"
       onclick="scrollToTop()"
-      style="bottom: 13%; right: 5%; z-index: 999">
+      style="
+        bottom: 17%;
+        right: 5%;
+        z-index: 999;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+      ">
       <svg height="1.2em" class="arrow" viewBox="0 0 512 512">
         <path
+          style="width: 45px; height: 45px"
           d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"></path>
       </svg>
     </button>
@@ -41,7 +90,7 @@
     <div
       id="AddButton"
       class="bg-primary position-fixed"
-      style="bottom: 5%; right: 5%; z-index: 999"
+      style="bottom: 9%; right: 5%; z-index: 999"
       onclick="addButtonClicked()">
       <span id="plusMark">+</span>
     </div>
@@ -306,91 +355,152 @@
     <!-- End register Modal   -->
 
     <!-- Start Navbar Container  -->
-    <div class="container">
-      <!-- ٍStart Navbar Container  -->
-      <div class="d-flex justify-content-center">
-        <div class="col-12 col-lg-9">
-          <nav
-            class="navbar navbar-expand-lg bg-body-tertiary shadow rounded pt-3">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="home.html">Told</a>
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                  <a
-                    class="nav-link active"
-                    aria-current="page"
-                    href="home.html"
-                    >Home</a
-                  >
-                  <a
-                    class="nav-link"
-                    onclick="profileClicked()"
-                    style="cursor: pointer"
-                    >Profile</a
-                  >
-                </div>
-                <!-- Non Logged in User -->
-                <div id="login-div" class="d-flex w-100 justify-content-end">
-                  <button
-                    id="navbar-login-btn"
-                    type="button"
-                    class="btn btn-outline-success mx-2"
-                    data-bs-toggle="modal"
-                    data-bs-target="#login-modal">
-                    Login
-                  </button>
-                  <button
-                    id="navbar-register-btn"
-                    type="button"
-                    class="btn btn-outline-success"
-                    data-bs-toggle="modal"
-                    data-bs-target="#register-modal">
-                    Register
-                  </button>
-                </div>
-                <!-- Non Logged in User -->
-                <!-- Logged in User  -->
-                <div
-                  id="logout-div"
-                  class="d-flex w-100 justify-content-end align-items-center">
-                  <img
-                    id="userProfileImg"
-                    class="rounded-circle border-2 me-1"
-                    style="width: 40px; height: 40px"
-                    src=""
-                    alt="" />
-                  <b id="nav-username">...</b>
-                  <button
-                    id="navbar-logout-btn"
-                    type="button"
-                    class="btn btn-outline-danger mx-2"
-                    onclick="logout()">
-                    Logout
-                  </button>
-                </div>
-                <!-- Logged in User  -->
+    <nav class="navbar fixed-top bg-body">
+      <div class="container-fluid">
+        <button
+          id="btn-nav"
+          class="btn btn-outline-primary"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+          aria-label="Toggle navigation">
+          Navbar
+        </button>
+        <button
+          id="btn-search"
+          class="btn btn-outline-primary"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasRight"
+          aria-controls="offcanvasRight"
+          aria-label="Toggle navigation">
+          Search
+        </button>
+        <div
+          class="offcanvas offcanvas-start"
+          style="width: 250px; background-color: #ffffff"
+          tabindex="-1"
+          id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <h5
+              class="offcanvas-title"
+              style="font-weight: 800; letter-spacing: 1.2px"
+              id="offcanvasNavbarLabel">
+              Told
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body d-flex flex-column">
+            <ul
+              class="navbar-nav justify-content-end pe-3 mb-3 flex-column flex-grow-0 flex-shrink-0">
+              <li class="nav-item d-flex align-items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 576 512"
+                  style="width: 20px; height: 20px; color: #000000b7">
+                  <path
+                    d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"
+                    fill="#000000b7" />
+                </svg>
+                <a
+                  class="nav-link"
+                  style="
+                    font-weight: 700;
+                    color: #000000b7;
+                    transition: 0.3s;
+                    width: fit-content;
+                  "
+                  aria-current="page"
+                  href="home.html"
+                  >Home</a
+                >
+              </li>
+              <li
+                class="nav-item d-flex align-items-center gap-2"
+                onclick="profileClicked()">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 576 512"
+                  style="width: 20px; height: 20px; color: #000000b7">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path
+                      d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
+                      fill="#000000b7" />
+                  </svg>
+                </svg>
+                <a
+                  class="nav-link"
+                  style="
+                    font-weight: 700;
+                    color: #000000b7;
+                    transition: 0.3s;
+                    width: fit-content;
+                  "
+                  aria-current="page"
+                  href="profile.html"
+                  >Profile</a
+                >
+              </li>
+            </ul>
+
+            <!-- Non Logged in User -->
+            <div class="loginAndLogout mt-auto align-items-start">
+              <div id="login-div" class="d-flex justify-content-end mb-2">
+                <button
+                  id="navbar-login-btn"
+                  type="button"
+                  class="btn btn-outline-success mx-5"
+                  data-bs-toggle="modal"
+                  data-bs-target="#login-modal">
+                  Login
+                </button>
+                <button
+                  id="navbar-register-btn"
+                  type="button"
+                  class="btn btn-outline-success mx-2"
+                  data-bs-toggle="modal"
+                  data-bs-target="#register-modal">
+                  Register
+                </button>
+              </div>
+              <!-- Logged in User  -->
+              <div
+                id="logout-div"
+                onclick="profileClicked()"
+                class="d-flex justify-content-end align-items-center">
+                <img
+                  id="userProfileImg"
+                  class="rounded-circle border-2 me-1"
+                  style="width: 40px; height: 40px"
+                  src=""
+                  alt="" />
+                <b id="nav-username">...</b>
+                <button
+                  id="navbar-logout-btn"
+                  type="button"
+                  class="btn btn-outline-danger mx-2"
+                  onclick="logout()">
+                  Logout
+                </button>
               </div>
             </div>
-          </nav>
+          </div>
         </div>
       </div>
-    </div>
+    </nav>
     <!-- End Navbar Container  -->
 
     <!-- Start Main Content  -->
     <div class="container" style="height: 1000px">
-      <div class="d-flex justify-content-center mt-4">
-        <div class="col-12 col-lg-9">
+      <div class="d-flex justify-content-center" style="margin-top: 60px">
+        <div class="col-12 col-lg-8">
+          <div id="Hello-div" class="mb-3 mt-0" style="font-weight: 500"></div>
           <!-- Start posts  -->
           <div id="posts">
             <!--Start Post  -->
@@ -403,5 +513,6 @@
     <!-- End Main Content  -->
 
     <script src="JS/main.js"></script>
+    <script src="JS/profileSearch.js"></script>
   </body>
 </html>
