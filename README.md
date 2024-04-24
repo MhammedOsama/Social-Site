@@ -1,6 +1,6 @@
 # Social Web App
 
-Welcome to our Social Web App! This application is designed to connect people, share thoughts, and interact with others in a social network environment.
+Welcome to our Social Web App! This application is designed to share thoughts and interact with others in a social network environment.
 
 ## Features
 
