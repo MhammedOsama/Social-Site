@@ -30,7 +30,8 @@ Welcome to our Social Web App! This application is designed to share thoughts an
 4. **Connect with other users** and **engage with their content**.
 5. **Customize your privacy settings** and **notifications** according to your preferences.
 
-## License
+## Demo
+[site-link]: https://told-site.netlify.app
 
 
 ## Contributing
