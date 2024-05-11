@@ -31,7 +31,10 @@ Welcome to our Social Web App! This application is designed to share thoughts an
 5. **Customize your privacy settings** and **notifications** according to your preferences.
 
 ## Demo
+[Told][site-link]
+
 [site-link]: https://told-site.netlify.app
+
 
 
 ## Contributing
